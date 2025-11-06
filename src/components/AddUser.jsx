@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import api from "../api";
+import api from "../api"; // ✅
 
 function AddUser() {
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
+    phoneNumber: "",
   });
 
   const handleChange = (e) => {
@@ -14,9 +15,9 @@ function AddUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.post("/users", user);
+    await api.post("/users", user); // ✅
     alert("✅ User added successfully!");
-    setUser({ name: "", email: "", password: "" });
+    setUser({ name: "", email: "", password: "", phoneNumber: "" });
   };
 
   return (
@@ -47,10 +48,19 @@ function AddUser() {
           onChange={handleChange}
           required
         /><br /><br />
-        <button type="submit">Add User</button>
-      </form>
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Enter phone number"
+          value={user.phoneNumber}
+          onChange={handleChange}
+        /><br /><br />
+        <button type="submit">Add User</button>      </form>
     </div>
   );
 }
 
 export default AddUser;
+
+
+

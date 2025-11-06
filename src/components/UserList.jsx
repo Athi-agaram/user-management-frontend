@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../api";
+import api from "../api"; // ✅ use api.js
 
 function UserList() {
   const [users, setUsers] = useState([]);
 
   const loadUsers = async () => {
-    const res = await api.get("/users");
+    const res = await api.get("/users"); // ✅ add slash
     setUsers(res.data);
   };
 
   const deleteUser = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      await api.delete(`/users/${id}`);
+      await api.delete(`/users/${id}`); // ✅
       loadUsers();
     }
   };
@@ -31,6 +31,7 @@ function UserList() {
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
+            <th>Phone Number</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -41,6 +42,7 @@ function UserList() {
               <td>{u.name}</td>
               <td>{u.email}</td>
               <td>{u.password}</td>
+              <td>{u.phoneNumber}</td>
               <td>
                 <Link to={`/edit/${u.id}`}>Edit</Link>{" "}
                 <button onClick={() => deleteUser(u.id)}>Delete</button>

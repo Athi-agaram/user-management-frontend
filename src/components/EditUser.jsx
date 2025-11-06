@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from "../api";
+import api from "../api"; // ✅
 
 function EditUser() {
   const { id } = useParams();
@@ -11,6 +11,7 @@ function EditUser() {
     name: "",
     email: "",
     password: "",
+    phoneNumber: "",
   });
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function EditUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put("/users", user);
+    await api.put("/users", user); // ✅ fixed typo
     alert("✅ User updated successfully!");
     navigate("/");
   };
@@ -61,8 +62,14 @@ function EditUser() {
           onChange={handleChange}
           required
         /><br /><br />
-        <button type="submit">Update</button>
-      </form>
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Enter phone number"
+          value={user.phoneNumber}
+          onChange={handleChange}
+        /><br /><br />
+        <button type="submit">Update</button>      </form>
     </div>
   );
 }

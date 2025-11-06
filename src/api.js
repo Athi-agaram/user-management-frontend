@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8080", // backend URL
+  baseURL: `${window.location.origin}/user-management-backend`, // ✅ Correct
 });
