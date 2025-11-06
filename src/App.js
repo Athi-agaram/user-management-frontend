@@ -7,14 +7,13 @@ import UserList from "./components/UserList";
 
 function App() {
   return (
-    <Router basename="/user-management-frontend"> {/* 👈 Important */}
+    <Router basename="/user-management-frontend"> 
       <Navbar />
       <div className="container" style={{ padding: "20px" }}>
         <Routes>
           <Route path="/" element={<UserList />} />
           <Route path="/add" element={<AddUser />} />
           <Route path="/edit/:id" element={<EditUser />} />
-          {/* redirect any unknown routes */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
